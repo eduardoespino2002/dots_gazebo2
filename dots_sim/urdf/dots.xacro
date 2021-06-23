@@ -1,0 +1,933 @@
+<?xml version="1.0"?>
+
+
+<robot name="dots" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+
+  <!-- <xacro:arg name="prefix" default="r01" /> -->
+
+
+
+  <!-- Robot parameters -->
+
+  <xacro:property name="lasersamples" value="16" />
+  <xacro:property name="laser_min" value="0.13" />
+  <xacro:property name="laser_max" value="2.0" />
+  <!-- <xacro:property name="pi" value="3.14159265359" /> -->
+
+  <xacro:property name="scale" value="0.001" />
+
+  <xacro:property name="board_height" value="0.06" />
+  <xacro:property name="ray_height" value="${board_height - 0.02}" />
+
+  <xacro:property name="camera_dist" value="0.11" />
+  <xacro:property name="camera_height" value="0.075" />
+  <xacro:property name="cam0_angle" value="0.2967" />
+  <xacro:property name="cam1_angle" value="2.251" />
+  <xacro:property name="cam2_angle" value="-2.251" />
+  <xacro:property name="cam3_angle" value="-0.2967" />
+
+
+  <xacro:property name="led_radius" value="0.127" />
+  <xacro:property name="led_width"  value="0.03" />
+  <xacro:property name="led_height" value="0.03" />
+  <xacro:property name="led_vpos"   value="0.06" />
+
+  <xacro:property name="led0_angle" value="0.1963" />
+  <xacro:property name="led1_angle" value="0.5890" />
+  <xacro:property name="led2_angle" value="0.9817" />
+  <xacro:property name="led3_angle" value="1.3744" />
+  <xacro:property name="led4_angle" value="1.7671" />
+  <xacro:property name="led5_angle" value="2.1598" />
+  <xacro:property name="led6_angle" value="2.5525" />
+  <xacro:property name="led7_angle" value="2.9452" />
+  <xacro:property name="led8_angle" value="3.3338" />
+  <xacro:property name="led9_angle" value="3.7306" />
+  <xacro:property name="led10_angle" value="4.1233" />
+  <xacro:property name="led11_angle" value="4.5160" />
+  <xacro:property name="led12_angle" value="4.9087" />
+  <xacro:property name="led13_angle" value="5.3014" />
+  <xacro:property name="led14_angle" value="5.6941" />
+  <xacro:property name="led15_angle" value="6.0868" />
+  
+  <!-- Body links -->
+  <link name="base_link" />
+
+
+  <link name="body">
+    <inertial>
+        <mass value="2.0" />
+        <!-- These numbers are roughly right for a solid cylinder 100mm high, 125mm radius -->
+        <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.015"/>
+    </inertial>
+    <collision>
+      <origin xyz="0 0 0.06" rpy="0 0 0" />
+      <geometry>
+        <cylinder length="0.12" radius="0.125"/>
+      </geometry>
+      <surface>
+        <friction>
+          <ode>
+            <mu>0.1</mu>
+            <mu2>0.1</mu2>
+          </ode>
+        </friction>
+      </surface>
+    </collision>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://dots_sim/models/robot/shell.stl" scale="${scale} ${scale} ${scale}"/>
+      </geometry>
+      <material name="White">
+        <color rgba="${240/255} ${240/255} ${240/255} 1.0"/>
+      </material>
+    </visual>
+    <visual>
+      <origin xyz="0 0 0.06" rpy="0 0 0" />
+      <geometry>
+        <cylinder length="0.09" radius="0.12"/>
+      </geometry>
+      <!-- <material name="Gray">
+        <color rgba="${100/255} ${100/255} ${100/255} 1.0"/>
+      </material> -->
+    </visual>
+  </link>
+  <joint name="body_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="body"/>
+    <axis xyz="0 0 1"/>
+    <origin xyz="0 0 0.005" rpy="0 0 0"/> 
+  </joint>
+
+
+
+  <link name="slider">
+    <inertial>
+        <mass value="1.0" />
+        <!-- These numbers are roughly right for a solid cylinder 100mm high, 125mm radius -->
+        <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.015"/>
+    </inertial>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <cylinder length="0.001" radius="0.125"/>
+      </geometry>
+      <surface>
+        <friction>
+          <ode>
+            <mu>0.2</mu>
+            <mu2>0.2</mu2>
+          </ode>
+        </friction>
+      </surface>
+    </collision>
+    <visual>
+      <origin xyz="0 0 0.001" rpy="0 0 0" />
+      <geometry>
+        <cylinder length="0.001" radius="0.1"/>
+      </geometry>
+    </visual>
+  </link>
+  <joint name="slider_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="slider"/>
+    <axis xyz="0 0 1"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/> 
+  </joint>
+
+  <link name="lifter">
+    <inertial>
+        <mass value="0.2" />
+        <!-- These numbers are roughly right for a solid cylinder 100mm high, 125mm radius -->
+        <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.015"/>
+    </inertial>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <cylinder length="0.002" radius="0.08"/>
+      </geometry>
+      <surface>
+        <friction>
+          <ode>
+            <mu>Inf</mu>
+            <mu2>Inf</mu2>
+          </ode>
+        </friction>
+        <contact>
+          <ode>
+          </ode>
+        </contact>
+      </surface>
+    </collision>
+    <collision>
+      <origin xyz="0.08 0 0" rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.005"/>
+      </geometry>
+      <surface>
+        <friction>
+          <ode>
+            <mu>Inf</mu>
+            <mu2>Inf</mu2>
+          </ode>
+        </friction>
+        <contact>
+          <ode>
+          </ode>
+        </contact>
+      </surface>
+    </collision>
+    <collision>
+      <origin xyz="0.0 0.08 0" rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.005"/>
+      </geometry>
+      <surface>
+        <friction>
+          <ode>
+            <mu>Inf</mu>
+            <mu2>Inf</mu2>
+          </ode>
+        </friction>
+        <contact>
+          <ode>
+          </ode>
+        </contact>
+      </surface>
+    </collision>
+    <collision>
+      <origin xyz="-0.08 0.0 0" rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.005"/>
+      </geometry>
+      <surface>
+        <friction>
+          <ode>
+            <mu>Inf</mu>
+            <mu2>Inf</mu2>
+          </ode>
+        </friction>
+        <contact>
+          <ode>
+          </ode>
+        </contact>
+      </surface>
+    </collision>
+    <collision>
+      <origin xyz="0.0 -0.08 0" rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.005"/>
+      </geometry>
+      <surface>
+        <friction>
+          <ode>
+            <mu>Inf</mu>
+            <mu2>Inf</mu2>
+          </ode>
+        </friction>
+        <contact>
+          <ode>
+          </ode>
+        </contact>
+      </surface>
+    </collision>
+    <!-- <collision>
+      <origin xyz="0 -0.04 0" rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.005"/>
+      </geometry>
+      <surface>
+        <friction>
+          <ode>
+            <mu>Inf</mu>
+            <mu2>Inf</mu2>
+          </ode>
+        </friction>
+        <contact>
+          <ode>
+          </ode>
+        </contact>
+      </surface>
+    </collision> -->
+    <visual>
+      <origin xyz="0 0 -0.05" rpy="0 0 0" />
+      <geometry>
+        <cylinder length="0.10" radius="0.08"/>
+      </geometry>
+    </visual>
+  </link>
+  <joint name="lifter_joint" type="prismatic">
+    <parent link="base_link"/>
+    <child link="lifter"/>
+    <axis xyz="0 0 1"/>
+    <!-- height down 143mm up 197mm -->
+    <origin xyz="0 0 0.143" rpy="0 0 0"/> 
+    <dynamics damping="1.0" friction="1.0"/>
+    <limit lower="0.0" upper="0.054" effort="1000.0" velocity="5.0"/>
+  </joint>
+
+
+
+  <!-- Add sensor models -->
+  <link name="irtof" />
+  <joint name="irtof_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="irtof"/>
+    <origin xyz="0 0 0.07" rpy="0 0 0"/> 
+  </joint>
+  <gazebo reference="irtof">
+    <sensor type="ray" name="ray_sensor">
+      <pose>0 0 0 0 0 0</pose>
+      <visualize>false</visualize>
+      <update_rate>50</update_rate>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>${lasersamples}</samples>
+            <resolution>1</resolution>
+            <min_angle>0</min_angle>
+            <max_angle>${2 * pi - pi / 8}</max_angle>
+          </horizontal>
+        </scan>
+        <range>
+          <min>${laser_min}</min>
+          <max>${laser_max}</max>
+          <resolution>0.001</resolution>
+        </range>
+      </ray>
+      <noise>
+        <type>gaussian</type>
+        <mean>0.0</mean>
+        <stddev>0.01</stddev>
+      </noise>
+      <plugin name="dots_sim_irtof" filename="libgazebo_ros_ray_sensor.so">
+        <ros>
+          <remapping>~/out:=sensor/scan</remapping>
+        </ros>
+        <frame_name>base_link</frame_name>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+  <!-- Cameras -->
+  <link name="cam0_link"/> 
+  <joint name="cam0_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="cam0_link"/>
+    <origin xyz="${camera_dist*cos(cam0_angle)} ${camera_dist*sin(cam0_angle)} ${camera_height}" rpy="0 0 ${cam0_angle}"/> 
+  </joint>
+  <link name="cam0_link_optical"/>
+  <joint name="cam0_joint_optical" type="fixed">
+    <origin xyz="0 0 0" rpy="${-pi/2} 0 ${-pi/2}"/>
+    <parent link="cam0_link"/>
+    <child link="cam0_link_optical"/>  
+  </joint>
+  <gazebo reference="cam0_link">
+    <sensor type="camera" name="cam0">
+      <always_on>0</always_on>
+      <update_rate>30</update_rate>
+      <camera name="cam0">
+        <horizontal_fov>2.094</horizontal_fov>
+        <image>
+          <width>640</width>
+          <height>480</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.02</near>
+          <far>300</far>
+        </clip>
+      </camera>
+      <plugin name="cam0" filename="libgazebo_ros_camera.so">
+        <ros>
+          <remapping>cam0/image_raw:=cam0/image</remapping>
+          <remapping>cam0/image_raw/compressed:=cam0/image/compressed</remapping>
+        </ros>
+        <frame_name>cam0_link_optical</frame_name>
+      </plugin>
+    </sensor>
+  </gazebo>
+  <link name="cam1_link"/>
+  <joint name="cam1_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="cam1_link"/>
+    <origin xyz="${camera_dist*cos(cam1_angle)} ${camera_dist*sin(cam1_angle)} ${camera_height}" rpy="0 0 ${cam1_angle}"/> 
+  </joint>
+  <link name="cam1_link_optical"/>
+  <joint name="cam1_joint_optical" type="fixed">
+    <origin xyz="0 0 0" rpy="${-pi/2} 0 ${-pi/2}"/>
+    <parent link="cam1_link"/>
+    <child link="cam1_link_optical"/>  
+  </joint>
+  <gazebo reference="cam1_link">
+    <sensor type="camera" name="cam1">
+      <always_on>0</always_on>
+      <update_rate>30</update_rate>
+      <camera name="cam1">
+        <horizontal_fov>2.094</horizontal_fov>
+        <image>
+          <width>640</width>
+          <height>480</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.02</near>
+          <far>300</far>
+        </clip>
+      </camera>
+      <plugin name="cam1" filename="libgazebo_ros_camera.so">
+        <ros>
+          <remapping>cam1/image_raw:=cam1/image</remapping>
+          <remapping>cam1/image_raw/compressed:=cam1/image/compressed</remapping>
+        </ros>
+        <frame_name>cam1_link_optical</frame_name>
+      </plugin>
+    </sensor>
+  </gazebo>
+  <link name="cam2_link"/>
+  <joint name="cam2_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="cam2_link"/>
+    <origin xyz="${camera_dist*cos(cam2_angle)} ${camera_dist*sin(cam2_angle)} ${camera_height}" rpy="0 0 ${cam2_angle}"/> 
+  </joint>
+  <link name="cam2_link_optical"/>
+  <joint name="cam2_joint_optical" type="fixed">
+    <origin xyz="0 0 0" rpy="${-pi/2} 0 ${-pi/2}"/>
+    <parent link="cam2_link"/>
+    <child link="cam2_link_optical"/>  
+  </joint>
+  <gazebo reference="cam2_link">
+    <sensor type="camera" name="cam2">
+      <always_on>0</always_on>
+      <update_rate>30</update_rate>
+      <camera name="cam2">
+        <horizontal_fov>2.094</horizontal_fov>
+        <image>
+          <width>640</width>
+          <height>480</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.02</near>
+          <far>300</far>
+        </clip>
+      </camera>
+      <plugin name="cam2" filename="libgazebo_ros_camera.so">
+        <ros>
+          <remapping>cam2/image_raw:=cam2/image</remapping>
+          <remapping>cam2/image_raw/compressed:=cam2/image/compressed</remapping>
+        </ros>
+        <frame_name>cam2_link_optical</frame_name>
+      </plugin>
+    </sensor>
+  </gazebo>
+  <link name="cam3_link"/>
+  <joint name="cam3_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="cam3_link"/>
+    <origin xyz="${camera_dist*cos(cam3_angle)} ${camera_dist*sin(cam3_angle)} ${camera_height}" rpy="0 0 ${cam3_angle}"/> 
+  </joint>
+  <link name="cam3_link_optical"/>
+  <joint name="cam3_joint_optical" type="fixed">
+    <origin xyz="0 0 0" rpy="${-pi/2} 0 ${-pi/2}"/>
+    <parent link="cam3_link"/>
+    <child link="cam3_link_optical"/>  
+  </joint>
+  <gazebo reference="cam3_link">
+    <sensor type="camera" name="cam3">
+      <always_on>0</always_on>
+      <update_rate>30</update_rate>
+      <camera name="cam3">
+        <horizontal_fov>2.094</horizontal_fov>
+        <image>
+          <width>640</width>
+          <height>480</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.02</near>
+          <far>300</far>
+        </clip>
+      </camera>
+      <plugin name="cam3" filename="libgazebo_ros_camera.so">
+        <ros>
+          <remapping>cam3/image_raw:=cam3/image</remapping>
+          <remapping>cam3/image_raw/compressed:=cam3/image/compressed</remapping>
+        </ros>
+        <frame_name>cam3_link_optical</frame_name>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+  <link name="cam4_link"/>
+  <joint name="cam4_joint" type="fixed">
+    <parent link="lifter"/>
+    <child link="cam4_link"/>
+    <origin xyz="0 0 0" rpy="0 -1.570796 0"/> 
+  </joint>
+  <link name="cam4_link_optical"/>
+  <joint name="cam4_joint_optical" type="fixed">
+    <origin xyz="0 0 0" rpy="${-pi/2} 0 ${-pi/2}"/>
+    <parent link="cam4_link"/>
+    <child link="cam4_link_optical"/>  
+  </joint>
+  <gazebo reference="cam4_link">
+    <sensor type="camera" name="cam4">
+      <always_on>0</always_on>
+      <update_rate>30</update_rate>
+      <camera name="cam4">
+        <horizontal_fov>2.094</horizontal_fov>
+        <image>
+          <width>640</width>
+          <height>480</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.02</near>
+          <far>300</far>
+        </clip>
+      </camera>
+      <plugin name="cam4" filename="libgazebo_ros_camera.so">
+        <ros>
+          <remapping>cam4/image_raw:=cam4/image</remapping>
+          <remapping>cam4/image_raw/compressed:=cam4/image/compressed</remapping>
+        </ros>
+        <frame_name>cam4_link_optical</frame_name>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+
+  <link name="imu_link"/>
+  <joint name="imu_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="imu_link"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+  <gazebo reference="imu_link">
+    <sensor name="imu" type="imu">
+      <always_on>true</always_on>
+      <update_rate>200</update_rate>
+      <imu>
+        <angular_velocity>
+          <x><noise type="gaussian"><mean>0.0</mean><stddev>5e-3</stddev></noise></x>
+          <y><noise type="gaussian"><mean>0.0</mean><stddev>5e-3</stddev></noise></y>
+          <z><noise type="gaussian"><mean>0.0</mean><stddev>5e-3</stddev></noise></z>
+        </angular_velocity>
+        <linear_acceleration>
+          <x><noise type="gaussian"><mean>0.0</mean><stddev>5e-2</stddev></noise></x>
+          <y><noise type="gaussian"><mean>0.0</mean><stddev>5e-2</stddev></noise></y>
+          <z><noise type="gaussian"><mean>0.0</mean><stddev>5e-2</stddev></noise></z>
+        </linear_acceleration>
+      </imu>
+      <plugin name="imu_plugin" filename="libgazebo_ros_imu_sensor.so">
+        <ros>
+          <remapping>~/out:=sensor/imu</remapping>
+        </ros>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+
+  <gazebo reference="base_link">
+    <material>Gazebo/DarkGrey</material>
+  </gazebo>
+
+  <gazebo reference="body">
+    <material>Gazebo/White</material>
+  </gazebo>
+
+  
+  
+
+
+
+
+  <!--                GAZEBO RELATED PART                             -->
+
+  <!-- ROS Control plugin for Gazebo -->
+  <gazebo>
+    <plugin name="dots_sim_force_based_drive" filename="libgazebo_ros_force_based_move.so">
+      <ros>
+        <remapping>/tf:=tf</remapping>
+        <remapping>/tf_static:=tf_static</remapping>
+      </ros>
+
+      <!-- output -->
+      <publish_odom>true</publish_odom>
+      <publish_odom_tf>true</publish_odom_tf>
+
+      <odometry_topic>odom</odometry_topic>
+      <odometry_frame>odom</odometry_frame>
+      <robot_base_frame>base_link</robot_base_frame>
+      <vel_p_gain>500.0</vel_p_gain>
+      <vel_i_gain>10000.0</vel_i_gain>
+      <vel_i_lim>0.1</vel_i_lim>
+      <force_lim>200.0</force_lim>
+      <omega_p_gain>5.0</omega_p_gain>
+      <omega_i_gain>100.0</omega_i_gain>
+      <omega_i_lim>0.01</omega_i_lim>
+      <torque_lim>10.0</torque_lim>
+    </plugin>
+
+    <!-- Ground truth -->
+    <plugin name="gazebo_ros_p3d" filename="libgazebo_ros_p3d.so">
+      <ros>
+        <remapping>odom:=ground_truth</remapping>
+        <!-- <argument>odom:=ground_truth</argument> -->
+      </ros>
+      <body_name>base_link</body_name>
+      <frame_name>odom</frame_name>
+      <update_rate>50</update_rate>
+      <xyz_offsets>0.0 0.0 0.0</xyz_offsets>
+      <rpy_offsets>0.0 0.0 0.0</rpy_offsets>
+      <gaussian_noise>0.01</gaussian_noise>
+    </plugin>
+
+
+    <plugin name="gazebo_ros_joint_state_publisher" filename="libgazebo_ros_joint_state_publisher.so">
+      <ros>
+        <remapping>/tf:=tf</remapping>
+        <remapping>/tf_static:=tf_static</remapping>
+      </ros>
+      <joint_name>lifter_joint</joint_name>
+      <update_rate>100.0</update_rate>
+    </plugin>
+
+    <plugin name="gazebo_ros_lifter" filename="libgazebo_ros_lifter.so">
+      <topic>lifter_pos</topic>
+      <joint_name>lifter_joint</joint_name>
+      <joint_position>0.0</joint_position>
+      <joint_pid>2000.0 1000.0 100.0</joint_pid>
+      <integrator_limit>0.1</integrator_limit>
+      <force_offset>2.0</force_offset>
+      <update_rate>100.0</update_rate>
+    </plugin>
+
+  </gazebo>
+
+
+<link name="led0">
+<visual>
+  <origin xyz="${led_radius*cos(led0_angle)} ${led_radius*sin(led0_angle)} ${led_vpos}" rpy="0 1.5708 ${led0_angle}" />
+  <geometry>
+    <box size="${led_width} ${led_height} 0.00011"/>
+  </geometry>
+</visual>
+</link>
+<joint name="led0_joint" type="fixed">
+  <parent link="base_link"/><child link="led0"/>
+  <axis xyz="0 0 0"/><origin xyz="0 0 0" rpy="0 0 0"/> 
+</joint>
+<gazebo reference="led0">
+  <material>transparent</material>
+  <visual>
+    <plugin name="colour_controller0" filename="libgazebo_ros_colour.so">
+    <ros><remapping>colour:=led0</remapping></ros>
+    </plugin>
+  </visual>
+</gazebo>
+<link name="led1">
+<visual>
+  <origin xyz="${led_radius*cos(led1_angle)} ${led_radius*sin(led1_angle)} ${led_vpos}" rpy="0 1.5708 ${led1_angle}" />
+  <geometry>
+    <box size="${led_width} ${led_height} 0.00011"/>
+  </geometry>
+</visual>
+</link>
+<joint name="led1_joint" type="fixed">
+  <parent link="base_link"/><child link="led1"/>
+  <axis xyz="0 0 0"/><origin xyz="0 0 0" rpy="0 0 0"/> 
+</joint>
+<gazebo reference="led1">
+  <material>transparent</material>
+  <visual>
+    <plugin name="colour_controller1" filename="libgazebo_ros_colour.so">
+    <ros><remapping>colour:=led1</remapping></ros>
+    </plugin>
+  </visual>
+</gazebo>
+<link name="led2">
+<visual>
+  <origin xyz="${led_radius*cos(led2_angle)} ${led_radius*sin(led2_angle)} ${led_vpos}" rpy="0 1.5708 ${led2_angle}" />
+  <geometry>
+    <box size="${led_width} ${led_height} 0.00011"/>
+  </geometry>
+</visual>
+</link>
+<joint name="led2_joint" type="fixed">
+  <parent link="base_link"/><child link="led2"/>
+  <axis xyz="0 0 0"/><origin xyz="0 0 0" rpy="0 0 0"/> 
+</joint>
+<gazebo reference="led2">
+  <material>transparent</material>
+  <visual>
+    <plugin name="colour_controller2" filename="libgazebo_ros_colour.so">
+    <ros><remapping>colour:=led2</remapping></ros>
+    </plugin>
+  </visual>
+</gazebo>
+<link name="led3">
+<visual>
+  <origin xyz="${led_radius*cos(led3_angle)} ${led_radius*sin(led3_angle)} ${led_vpos}" rpy="0 1.5708 ${led3_angle}" />
+  <geometry>
+    <box size="${led_width} ${led_height} 0.00011"/>
+  </geometry>
+</visual>
+</link>
+<joint name="led3_joint" type="fixed">
+  <parent link="base_link"/><child link="led3"/>
+  <axis xyz="0 0 0"/><origin xyz="0 0 0" rpy="0 0 0"/> 
+</joint>
+<gazebo reference="led3">
+  <material>transparent</material>
+  <visual>
+    <plugin name="colour_controller3" filename="libgazebo_ros_colour.so">
+    <ros><remapping>colour:=led3</remapping></ros>
+    </plugin>
+  </visual>
+</gazebo>
+<link name="led4">
+<visual>
+  <origin xyz="${led_radius*cos(led4_angle)} ${led_radius*sin(led4_angle)} ${led_vpos}" rpy="0 1.5708 ${led4_angle}" />
+  <geometry>
+    <box size="${led_width} ${led_height} 0.00011"/>
+  </geometry>
+</visual>
+</link>
+<joint name="led4_joint" type="fixed">
+  <parent link="base_link"/><child link="led4"/>
+  <axis xyz="0 0 0"/><origin xyz="0 0 0" rpy="0 0 0"/> 
+</joint>
+<gazebo reference="led4">
+  <material>transparent</material>
+  <visual>
+    <plugin name="colour_controller4" filename="libgazebo_ros_colour.so">
+    <ros><remapping>colour:=led4</remapping></ros>
+    </plugin>
+  </visual>
+</gazebo>
+<link name="led5">
+<visual>
+  <origin xyz="${led_radius*cos(led5_angle)} ${led_radius*sin(led5_angle)} ${led_vpos}" rpy="0 1.5708 ${led5_angle}" />
+  <geometry>
+    <box size="${led_width} ${led_height} 0.00011"/>
+  </geometry>
+</visual>
+</link>
+<joint name="led5_joint" type="fixed">
+  <parent link="base_link"/><child link="led5"/>
+  <axis xyz="0 0 0"/><origin xyz="0 0 0" rpy="0 0 0"/> 
+</joint>
+<gazebo reference="led5">
+  <material>transparent</material>
+  <visual>
+    <plugin name="colour_controller5" filename="libgazebo_ros_colour.so">
+    <ros><remapping>colour:=led5</remapping></ros>
+    </plugin>
+  </visual>
+</gazebo>
+<link name="led6">
+<visual>
+  <origin xyz="${led_radius*cos(led6_angle)} ${led_radius*sin(led6_angle)} ${led_vpos}" rpy="0 1.5708 ${led6_angle}" />
+  <geometry>
+    <box size="${led_width} ${led_height} 0.00011"/>
+  </geometry>
+</visual>
+</link>
+<joint name="led6_joint" type="fixed">
+  <parent link="base_link"/><child link="led6"/>
+  <axis xyz="0 0 0"/><origin xyz="0 0 0" rpy="0 0 0"/> 
+</joint>
+<gazebo reference="led6">
+  <material>transparent</material>
+  <visual>
+    <plugin name="colour_controller6" filename="libgazebo_ros_colour.so">
+    <ros><remapping>colour:=led6</remapping></ros>
+    </plugin>
+  </visual>
+</gazebo>
+<link name="led7">
+<visual>
+  <origin xyz="${led_radius*cos(led7_angle)} ${led_radius*sin(led7_angle)} ${led_vpos}" rpy="0 1.5708 ${led7_angle}" />
+  <geometry>
+    <box size="${led_width} ${led_height} 0.00011"/>
+  </geometry>
+</visual>
+</link>
+<joint name="led7_joint" type="fixed">
+  <parent link="base_link"/><child link="led7"/>
+  <axis xyz="0 0 0"/><origin xyz="0 0 0" rpy="0 0 0"/> 
+</joint>
+<gazebo reference="led7">
+  <material>transparent</material>
+  <visual>
+    <plugin name="colour_controller7" filename="libgazebo_ros_colour.so">
+    <ros><remapping>colour:=led7</remapping></ros>
+    </plugin>
+  </visual>
+</gazebo>
+<link name="led8">
+<visual>
+  <origin xyz="${led_radius*cos(led8_angle)} ${led_radius*sin(led8_angle)} ${led_vpos}" rpy="0 1.5708 ${led8_angle}" />
+  <geometry>
+    <box size="${led_width} ${led_height} 0.00011"/>
+  </geometry>
+</visual>
+</link>
+<joint name="led8_joint" type="fixed">
+  <parent link="base_link"/><child link="led8"/>
+  <axis xyz="0 0 0"/><origin xyz="0 0 0" rpy="0 0 0"/> 
+</joint>
+<gazebo reference="led8">
+  <material>transparent</material>
+  <visual>
+    <plugin name="colour_controller8" filename="libgazebo_ros_colour.so">
+    <ros><remapping>colour:=led8</remapping></ros>
+    </plugin>
+  </visual>
+</gazebo>
+<link name="led9">
+<visual>
+  <origin xyz="${led_radius*cos(led9_angle)} ${led_radius*sin(led9_angle)} ${led_vpos}" rpy="0 1.5708 ${led9_angle}" />
+  <geometry>
+    <box size="${led_width} ${led_height} 0.00011"/>
+  </geometry>
+</visual>
+</link>
+<joint name="led9_joint" type="fixed">
+  <parent link="base_link"/><child link="led9"/>
+  <axis xyz="0 0 0"/><origin xyz="0 0 0" rpy="0 0 0"/> 
+</joint>
+<gazebo reference="led9">
+  <material>transparent</material>
+  <visual>
+    <plugin name="colour_controller9" filename="libgazebo_ros_colour.so">
+    <ros><remapping>colour:=led9</remapping></ros>
+    </plugin>
+  </visual>
+</gazebo>
+<link name="led10">
+<visual>
+  <origin xyz="${led_radius*cos(led10_angle)} ${led_radius*sin(led10_angle)} ${led_vpos}" rpy="0 1.5708 ${led10_angle}" />
+  <geometry>
+    <box size="${led_width} ${led_height} 0.00011"/>
+  </geometry>
+</visual>
+</link>
+<joint name="led10_joint" type="fixed">
+  <parent link="base_link"/><child link="led10"/>
+  <axis xyz="0 0 0"/><origin xyz="0 0 0" rpy="0 0 0"/> 
+</joint>
+<gazebo reference="led10">
+  <material>transparent</material>
+  <visual>
+    <plugin name="colour_controller10" filename="libgazebo_ros_colour.so">
+    <ros><remapping>colour:=led10</remapping></ros>
+    </plugin>
+  </visual>
+</gazebo>
+<link name="led11">
+<visual>
+  <origin xyz="${led_radius*cos(led11_angle)} ${led_radius*sin(led11_angle)} ${led_vpos}" rpy="0 1.5708 ${led11_angle}" />
+  <geometry>
+    <box size="${led_width} ${led_height} 0.00011"/>
+  </geometry>
+</visual>
+</link>
+<joint name="led11_joint" type="fixed">
+  <parent link="base_link"/><child link="led11"/>
+  <axis xyz="0 0 0"/><origin xyz="0 0 0" rpy="0 0 0"/> 
+</joint>
+<gazebo reference="led11">
+  <material>transparent</material>
+  <visual>
+    <plugin name="colour_controller11" filename="libgazebo_ros_colour.so">
+    <ros><remapping>colour:=led11</remapping></ros>
+    </plugin>
+  </visual>
+</gazebo>
+<link name="led12">
+<visual>
+  <origin xyz="${led_radius*cos(led12_angle)} ${led_radius*sin(led12_angle)} ${led_vpos}" rpy="0 1.5708 ${led12_angle}" />
+  <geometry>
+    <box size="${led_width} ${led_height} 0.00011"/>
+  </geometry>
+</visual>
+</link>
+<joint name="led12_joint" type="fixed">
+  <parent link="base_link"/><child link="led12"/>
+  <axis xyz="0 0 0"/><origin xyz="0 0 0" rpy="0 0 0"/> 
+</joint>
+<gazebo reference="led12">
+  <material>transparent</material>
+  <visual>
+    <plugin name="colour_controller12" filename="libgazebo_ros_colour.so">
+    <ros><remapping>colour:=led12</remapping></ros>
+    </plugin>
+  </visual>
+</gazebo>
+<link name="led13">
+<visual>
+  <origin xyz="${led_radius*cos(led13_angle)} ${led_radius*sin(led13_angle)} ${led_vpos}" rpy="0 1.5708 ${led13_angle}" />
+  <geometry>
+    <box size="${led_width} ${led_height} 0.00011"/>
+  </geometry>
+</visual>
+</link>
+<joint name="led13_joint" type="fixed">
+  <parent link="base_link"/><child link="led13"/>
+  <axis xyz="0 0 0"/><origin xyz="0 0 0" rpy="0 0 0"/> 
+</joint>
+<gazebo reference="led13">
+  <material>transparent</material>
+  <visual>
+    <plugin name="colour_controller13" filename="libgazebo_ros_colour.so">
+    <ros><remapping>colour:=led13</remapping></ros>
+    </plugin>
+  </visual>
+</gazebo>
+<link name="led14">
+<visual>
+  <origin xyz="${led_radius*cos(led14_angle)} ${led_radius*sin(led14_angle)} ${led_vpos}" rpy="0 1.5708 ${led14_angle}" />
+  <geometry>
+    <box size="${led_width} ${led_height} 0.00011"/>
+  </geometry>
+</visual>
+</link>
+<joint name="led14_joint" type="fixed">
+  <parent link="base_link"/><child link="led14"/>
+  <axis xyz="0 0 0"/><origin xyz="0 0 0" rpy="0 0 0"/> 
+</joint>
+<gazebo reference="led14">
+  <material>transparent</material>
+  <visual>
+    <plugin name="colour_controller14" filename="libgazebo_ros_colour.so">
+    <ros><remapping>colour:=led14</remapping></ros>
+    </plugin>
+  </visual>
+</gazebo>
+<link name="led15">
+<visual>
+  <origin xyz="${led_radius*cos(led15_angle)} ${led_radius*sin(led15_angle)} ${led_vpos}" rpy="0 1.5708 ${led15_angle}" />
+  <geometry>
+    <box size="${led_width} ${led_height} 0.00011"/>
+  </geometry>
+</visual>
+</link>
+<joint name="led15_joint" type="fixed">
+  <parent link="base_link"/><child link="led15"/>
+  <axis xyz="0 0 0"/><origin xyz="0 0 0" rpy="0 0 0"/> 
+</joint>
+<gazebo reference="led15">
+  <material>transparent</material>
+  <visual>
+    <plugin name="colour_controller15" filename="libgazebo_ros_colour.so">
+    <ros><remapping>colour:=led15</remapping></ros>
+    </plugin>
+  </visual>
+</gazebo>
+
+</robot>
+

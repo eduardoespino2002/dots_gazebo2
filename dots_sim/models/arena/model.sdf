@@ -1,0 +1,113 @@
+<sdf version="1.5">
+    <model name="arena">
+      <static>true</static>
+      <link name="link">
+        <inertial>
+          <mass>1.0</mass>
+          <inertia><ixx>0.01</ixx><ixy>0.0</ixy><ixz>0.0</ixz>
+            <iyy>0.01</iyy><iyz>0.0</iyz><izz>0.01</izz> 
+          </inertia>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model://arena_walls/arena.stl</uri>
+              <scale>0.001 0.001 0.0005</scale>
+            </mesh>
+          </geometry>
+          <surface>
+              <friction>
+              <ode>
+                <mu>0.1</mu>
+                <mu2>0.1</mu2>
+              </ode>
+              </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://arena_walls/arena.stl</uri>
+              <scale>0.001 0.001 0.0005</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/PaintedWall</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <visual name="tag000">
+          <pose>2.499 0.5 0.4 0.03 0 0</pose> <geometry> <box><size>0.00011 0.3 0.3</size></box> </geometry>
+          <material> <script> <uri>file://media/materials/scripts/tag.material</uri> <name>tag000</name> </script> </material>
+        </visual>
+        <visual name="tag001">
+          <pose>2.499 1.73 0.4 -0.01 0 0</pose> <geometry> <box><size>0.00011 0.3 0.3</size></box> </geometry>
+          <material> <script> <uri>file://media/materials/scripts/tag.material</uri> <name>tag001</name> </script> </material>
+        </visual>
+        <visual name="tag002">
+          <pose>1.8 2.499 0.41 0.03 0 1.5708</pose> <geometry> <box><size>0.00011 0.3 0.3</size></box> </geometry>
+          <material> <script> <uri>file://media/materials/scripts/tag.material</uri> <name>tag002</name> </script> </material>
+        </visual>
+        <visual name="tag003">
+          <pose>0.6 2.499 0.42 0.01 0 1.5708</pose> <geometry> <box><size>0.00011 0.3 0.3</size></box> </geometry>
+          <material> <script> <uri>file://media/materials/scripts/tag.material</uri> <name>tag003</name> </script> </material>
+        </visual>
+        <visual name="tag004">
+          <pose>-0.82 2.499 0.4 -0.05 0 1.5708</pose> <geometry> <box><size>0.00011 0.3 0.3</size></box> </geometry>
+          <material> <script> <uri>file://media/materials/scripts/tag.material</uri> <name>tag004</name> </script> </material>
+        </visual>
+        <visual name="tag005">
+          <pose>-1.5 1.78 0.41 0.0 0 0</pose> <geometry> <box><size>0.00011 0.3 0.3</size></box> </geometry>
+          <material> <script> <uri>file://media/materials/scripts/tag.material</uri> <name>tag005</name> </script> </material>
+        </visual>
+        <visual name="tag006">
+          <pose>-1.5 0.4 0.4 -0.01 0 0</pose> <geometry> <box><size>0.00011 0.3 0.3</size></box> </geometry>
+          <material> <script> <uri>file://media/materials/scripts/tag.material</uri> <name>tag006</name> </script> </material>
+        </visual>
+        <visual name="tag007">
+          <pose>-1.5 -0.82 0.4 0.002 0 0</pose> <geometry> <box><size>0.00011 0.3 0.3</size></box> </geometry>
+          <material> <script> <uri>file://media/materials/scripts/tag.material</uri> <name>tag007</name> </script> </material>
+        </visual>
+        <visual name="tag008">
+          <pose>1.79 -1.5 0.41 0.002 0 -1.5708</pose> <geometry> <box><size>0.00011 0.3 0.3</size></box> </geometry>
+          <material> <script> <uri>file://media/materials/scripts/tag.material</uri> <name>tag008</name> </script> </material>
+        </visual>
+        <visual name="tag009">
+          <pose>0.5 -1.5 0.4 -0.001 0 -1.5708</pose> <geometry> <box><size>0.00011 0.3 0.3</size></box> </geometry>
+          <material> <script> <uri>file://media/materials/scripts/tag.material</uri> <name>tag009</name> </script> </material>
+        </visual>
+        <visual name="tag010">
+          <pose>-0.72 -1.5 0.4 0.03 0 -1.5708</pose> <geometry> <box><size>0.00011 0.3 0.3</size></box> </geometry>
+          <material> <script> <uri>file://media/materials/scripts/tag.material</uri> <name>tag010</name> </script> </material>
+        </visual>
+        <visual name="tag011">
+          <pose>2.499 -0.77 0.392 0.002 0 0</pose> <geometry> <box><size>0.00011 0.3 0.3</size></box> </geometry>
+          <material> <script> <uri>file://media/materials/scripts/tag.material</uri> <name>tag011</name> </script> </material>
+        </visual>
+        <visual name="floor">
+          <pose>0 0 0.002 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>5 5 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>floortile</name>
+              <uri>file://media/materials/scripts/floortile.material</uri>
+            </script>
+          </material>
+        </visual>
+      </link>
+      <!-- <link name=scoreboard>
+        <material>transparent</material>
+        <visual name="scoreboard">
+          <pose>0 2.5 1.2 1.5708 0 0</pose> <geometry> <box><size>2.0 0.3 0.00011</size></box> </geometry>
+          <plugin name="scoreboard_controller" filename="libgazebo_ros_colour.so">
+          </plugin>
+        </visual>
+      </link> -->
+    </model>
+</sdf>

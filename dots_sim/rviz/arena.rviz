@@ -1,0 +1,759 @@
+Panels:
+  - Class: rviz_common/Displays
+    Help Height: 71
+    Name: Displays
+    Property Tree Widget:
+      Expanded:
+        - /TF1/Tree1
+        - /Camera1/Topic1
+        - /Camera2/Topic1
+        - /Image1/Topic1
+        - /PointCloud21/Topic1
+      Splitter Ratio: 0.38151657581329346
+    Tree Height: 303
+  - Class: rviz_common/Selection
+    Name: Selection
+  - Class: rviz_common/Tool Properties
+    Expanded:
+      - /2D Goal Pose1
+      - /Publish Point1
+    Name: Tool Properties
+    Splitter Ratio: 0.5886790156364441
+  - Class: rviz_common/Views
+    Expanded:
+      - /Current View1
+    Name: Views
+    Splitter Ratio: 0.5
+Visualization Manager:
+  Class: ""
+  Displays:
+    - Alpha: 0.5
+      Cell Size: 1
+      Class: rviz_default_plugins/Grid
+      Color: 160; 160; 164
+      Enabled: true
+      Line Style:
+        Line Width: 0.029999999329447746
+        Value: Lines
+      Name: Grid
+      Normal Cell Count: 0
+      Offset:
+        X: 0
+        Y: 0
+        Z: 0
+      Plane: XY
+      Plane Cell Count: 10
+      Reference Frame: <Fixed Frame>
+      Value: true
+    - Class: rviz_default_plugins/TF
+      Enabled: true
+      Frame Timeout: 15
+      Frames:
+        All Enabled: false
+        odom:
+          Value: true
+        robot_00000001_base_link:
+          Value: true
+        robot_00000001_body:
+          Value: true
+        robot_00000001_cam0_fid000:
+          Value: true
+        robot_00000001_cam0_fid001:
+          Value: true
+        robot_00000001_cam0_fid002:
+          Value: true
+        robot_00000001_cam0_fid003:
+          Value: true
+        robot_00000001_cam0_fid004:
+          Value: true
+        robot_00000001_cam0_fid005:
+          Value: true
+        robot_00000001_cam0_fid006:
+          Value: true
+        robot_00000001_cam0_fid007:
+          Value: true
+        robot_00000001_cam0_fid008:
+          Value: true
+        robot_00000001_cam0_fid009:
+          Value: true
+        robot_00000001_cam0_fid010:
+          Value: true
+        robot_00000001_cam0_fid011:
+          Value: true
+        robot_00000001_cam0_fid100:
+          Value: true
+        robot_00000001_cam0_fid101:
+          Value: true
+        robot_00000001_cam0_fid102:
+          Value: true
+        robot_00000001_cam0_fid103:
+          Value: true
+        robot_00000001_cam0_fid104:
+          Value: true
+        robot_00000001_cam0_fid105:
+          Value: true
+        robot_00000001_cam0_fid106:
+          Value: true
+        robot_00000001_cam0_fid107:
+          Value: true
+        robot_00000001_cam0_fid108:
+          Value: true
+        robot_00000001_cam0_fid109:
+          Value: true
+        robot_00000001_cam0_link:
+          Value: true
+        robot_00000001_cam0_link_optical:
+          Value: true
+        robot_00000001_cam0_target:
+          Value: true
+        robot_00000001_cam1_fid000:
+          Value: true
+        robot_00000001_cam1_fid001:
+          Value: true
+        robot_00000001_cam1_fid002:
+          Value: true
+        robot_00000001_cam1_fid003:
+          Value: true
+        robot_00000001_cam1_fid004:
+          Value: true
+        robot_00000001_cam1_fid005:
+          Value: true
+        robot_00000001_cam1_fid006:
+          Value: true
+        robot_00000001_cam1_fid007:
+          Value: true
+        robot_00000001_cam1_fid008:
+          Value: true
+        robot_00000001_cam1_fid009:
+          Value: true
+        robot_00000001_cam1_fid010:
+          Value: true
+        robot_00000001_cam1_fid011:
+          Value: true
+        robot_00000001_cam1_fid101:
+          Value: true
+        robot_00000001_cam1_fid103:
+          Value: true
+        robot_00000001_cam1_fid104:
+          Value: true
+        robot_00000001_cam1_fid106:
+          Value: true
+        robot_00000001_cam1_fid107:
+          Value: true
+        robot_00000001_cam1_fid108:
+          Value: true
+        robot_00000001_cam1_fid109:
+          Value: true
+        robot_00000001_cam1_link:
+          Value: true
+        robot_00000001_cam1_link_optical:
+          Value: true
+        robot_00000001_cam1_target:
+          Value: true
+        robot_00000001_cam2_fid000:
+          Value: true
+        robot_00000001_cam2_fid001:
+          Value: true
+        robot_00000001_cam2_fid002:
+          Value: true
+        robot_00000001_cam2_fid003:
+          Value: true
+        robot_00000001_cam2_fid004:
+          Value: true
+        robot_00000001_cam2_fid005:
+          Value: true
+        robot_00000001_cam2_fid006:
+          Value: true
+        robot_00000001_cam2_fid007:
+          Value: true
+        robot_00000001_cam2_fid008:
+          Value: true
+        robot_00000001_cam2_fid009:
+          Value: true
+        robot_00000001_cam2_fid010:
+          Value: true
+        robot_00000001_cam2_fid011:
+          Value: true
+        robot_00000001_cam2_fid100:
+          Value: true
+        robot_00000001_cam2_fid101:
+          Value: true
+        robot_00000001_cam2_fid102:
+          Value: true
+        robot_00000001_cam2_fid103:
+          Value: true
+        robot_00000001_cam2_fid104:
+          Value: true
+        robot_00000001_cam2_fid105:
+          Value: true
+        robot_00000001_cam2_fid106:
+          Value: true
+        robot_00000001_cam2_fid107:
+          Value: true
+        robot_00000001_cam2_fid108:
+          Value: true
+        robot_00000001_cam2_fid109:
+          Value: true
+        robot_00000001_cam2_link:
+          Value: true
+        robot_00000001_cam2_link_optical:
+          Value: true
+        robot_00000001_cam2_target:
+          Value: true
+        robot_00000001_cam3_fid000:
+          Value: true
+        robot_00000001_cam3_fid001:
+          Value: true
+        robot_00000001_cam3_fid002:
+          Value: true
+        robot_00000001_cam3_fid003:
+          Value: true
+        robot_00000001_cam3_fid004:
+          Value: true
+        robot_00000001_cam3_fid005:
+          Value: true
+        robot_00000001_cam3_fid006:
+          Value: true
+        robot_00000001_cam3_fid007:
+          Value: true
+        robot_00000001_cam3_fid008:
+          Value: true
+        robot_00000001_cam3_fid009:
+          Value: true
+        robot_00000001_cam3_fid010:
+          Value: true
+        robot_00000001_cam3_fid011:
+          Value: true
+        robot_00000001_cam3_fid100:
+          Value: true
+        robot_00000001_cam3_fid101:
+          Value: true
+        robot_00000001_cam3_fid102:
+          Value: true
+        robot_00000001_cam3_fid103:
+          Value: true
+        robot_00000001_cam3_fid104:
+          Value: true
+        robot_00000001_cam3_fid105:
+          Value: true
+        robot_00000001_cam3_fid106:
+          Value: true
+        robot_00000001_cam3_fid107:
+          Value: true
+        robot_00000001_cam3_fid108:
+          Value: true
+        robot_00000001_cam3_fid109:
+          Value: true
+        robot_00000001_cam3_link:
+          Value: true
+        robot_00000001_cam3_link_optical:
+          Value: true
+        robot_00000001_cam3_target:
+          Value: true
+        robot_00000001_cam4_fid200:
+          Value: true
+        robot_00000001_cam4_link:
+          Value: true
+        robot_00000001_cam4_link_optical:
+          Value: true
+        robot_00000001_imu_link:
+          Value: true
+        robot_00000001_irtof:
+          Value: true
+        robot_00000001_led0:
+          Value: true
+        robot_00000001_led1:
+          Value: true
+        robot_00000001_led10:
+          Value: true
+        robot_00000001_led11:
+          Value: true
+        robot_00000001_led12:
+          Value: true
+        robot_00000001_led13:
+          Value: true
+        robot_00000001_led14:
+          Value: true
+        robot_00000001_led15:
+          Value: true
+        robot_00000001_led2:
+          Value: true
+        robot_00000001_led3:
+          Value: true
+        robot_00000001_led4:
+          Value: true
+        robot_00000001_led5:
+          Value: true
+        robot_00000001_led6:
+          Value: true
+        robot_00000001_led7:
+          Value: true
+        robot_00000001_led8:
+          Value: true
+        robot_00000001_led9:
+          Value: true
+        robot_00000001_lifter:
+          Value: true
+        robot_00000001_slider:
+          Value: true
+      Marker Scale: 1
+      Name: TF
+      Show Arrows: true
+      Show Axes: true
+      Show Names: false
+      Tree:
+        odom:
+          robot_00000001_base_link:
+            robot_00000001_body:
+              {}
+            robot_00000001_cam0_link:
+              robot_00000001_cam0_link_optical:
+                robot_00000001_cam0_fid000:
+                  {}
+                robot_00000001_cam0_fid001:
+                  {}
+                robot_00000001_cam0_fid002:
+                  {}
+                robot_00000001_cam0_fid003:
+                  {}
+                robot_00000001_cam0_fid004:
+                  {}
+                robot_00000001_cam0_fid005:
+                  {}
+                robot_00000001_cam0_fid006:
+                  {}
+                robot_00000001_cam0_fid007:
+                  {}
+                robot_00000001_cam0_fid008:
+                  {}
+                robot_00000001_cam0_fid009:
+                  {}
+                robot_00000001_cam0_fid010:
+                  {}
+                robot_00000001_cam0_fid011:
+                  {}
+                robot_00000001_cam0_fid100:
+                  {}
+                robot_00000001_cam0_fid101:
+                  {}
+                robot_00000001_cam0_fid102:
+                  {}
+                robot_00000001_cam0_fid103:
+                  {}
+                robot_00000001_cam0_fid104:
+                  {}
+                robot_00000001_cam0_fid105:
+                  {}
+                robot_00000001_cam0_fid106:
+                  {}
+                robot_00000001_cam0_fid107:
+                  {}
+                robot_00000001_cam0_fid108:
+                  {}
+                robot_00000001_cam0_fid109:
+                  {}
+              robot_00000001_cam0_target:
+                {}
+            robot_00000001_cam1_link:
+              robot_00000001_cam1_link_optical:
+                robot_00000001_cam1_fid000:
+                  {}
+                robot_00000001_cam1_fid001:
+                  {}
+                robot_00000001_cam1_fid002:
+                  {}
+                robot_00000001_cam1_fid003:
+                  {}
+                robot_00000001_cam1_fid004:
+                  {}
+                robot_00000001_cam1_fid005:
+                  {}
+                robot_00000001_cam1_fid006:
+                  {}
+                robot_00000001_cam1_fid007:
+                  {}
+                robot_00000001_cam1_fid008:
+                  {}
+                robot_00000001_cam1_fid009:
+                  {}
+                robot_00000001_cam1_fid010:
+                  {}
+                robot_00000001_cam1_fid011:
+                  {}
+                robot_00000001_cam1_fid101:
+                  {}
+                robot_00000001_cam1_fid103:
+                  {}
+                robot_00000001_cam1_fid104:
+                  {}
+                robot_00000001_cam1_fid106:
+                  {}
+                robot_00000001_cam1_fid107:
+                  {}
+                robot_00000001_cam1_fid108:
+                  {}
+                robot_00000001_cam1_fid109:
+                  {}
+              robot_00000001_cam1_target:
+                {}
+            robot_00000001_cam2_link:
+              robot_00000001_cam2_link_optical:
+                robot_00000001_cam2_fid000:
+                  {}
+                robot_00000001_cam2_fid001:
+                  {}
+                robot_00000001_cam2_fid002:
+                  {}
+                robot_00000001_cam2_fid003:
+                  {}
+                robot_00000001_cam2_fid004:
+                  {}
+                robot_00000001_cam2_fid005:
+                  {}
+                robot_00000001_cam2_fid006:
+                  {}
+                robot_00000001_cam2_fid007:
+                  {}
+                robot_00000001_cam2_fid008:
+                  {}
+                robot_00000001_cam2_fid009:
+                  {}
+                robot_00000001_cam2_fid010:
+                  {}
+                robot_00000001_cam2_fid011:
+                  {}
+                robot_00000001_cam2_fid100:
+                  {}
+                robot_00000001_cam2_fid101:
+                  {}
+                robot_00000001_cam2_fid102:
+                  {}
+                robot_00000001_cam2_fid103:
+                  {}
+                robot_00000001_cam2_fid104:
+                  {}
+                robot_00000001_cam2_fid105:
+                  {}
+                robot_00000001_cam2_fid106:
+                  {}
+                robot_00000001_cam2_fid107:
+                  {}
+                robot_00000001_cam2_fid108:
+                  {}
+                robot_00000001_cam2_fid109:
+                  {}
+              robot_00000001_cam2_target:
+                {}
+            robot_00000001_cam3_link:
+              robot_00000001_cam3_link_optical:
+                robot_00000001_cam3_fid000:
+                  {}
+                robot_00000001_cam3_fid001:
+                  {}
+                robot_00000001_cam3_fid002:
+                  {}
+                robot_00000001_cam3_fid003:
+                  {}
+                robot_00000001_cam3_fid004:
+                  {}
+                robot_00000001_cam3_fid005:
+                  {}
+                robot_00000001_cam3_fid006:
+                  {}
+                robot_00000001_cam3_fid007:
+                  {}
+                robot_00000001_cam3_fid008:
+                  {}
+                robot_00000001_cam3_fid009:
+                  {}
+                robot_00000001_cam3_fid010:
+                  {}
+                robot_00000001_cam3_fid011:
+                  {}
+                robot_00000001_cam3_fid100:
+                  {}
+                robot_00000001_cam3_fid101:
+                  {}
+                robot_00000001_cam3_fid102:
+                  {}
+                robot_00000001_cam3_fid103:
+                  {}
+                robot_00000001_cam3_fid104:
+                  {}
+                robot_00000001_cam3_fid105:
+                  {}
+                robot_00000001_cam3_fid106:
+                  {}
+                robot_00000001_cam3_fid107:
+                  {}
+                robot_00000001_cam3_fid108:
+                  {}
+                robot_00000001_cam3_fid109:
+                  {}
+              robot_00000001_cam3_target:
+                {}
+            robot_00000001_imu_link:
+              {}
+            robot_00000001_irtof:
+              {}
+            robot_00000001_led0:
+              {}
+            robot_00000001_led1:
+              {}
+            robot_00000001_led10:
+              {}
+            robot_00000001_led11:
+              {}
+            robot_00000001_led12:
+              {}
+            robot_00000001_led13:
+              {}
+            robot_00000001_led14:
+              {}
+            robot_00000001_led15:
+              {}
+            robot_00000001_led2:
+              {}
+            robot_00000001_led3:
+              {}
+            robot_00000001_led4:
+              {}
+            robot_00000001_led5:
+              {}
+            robot_00000001_led6:
+              {}
+            robot_00000001_led7:
+              {}
+            robot_00000001_led8:
+              {}
+            robot_00000001_led9:
+              {}
+            robot_00000001_lifter:
+              robot_00000001_cam4_link:
+                robot_00000001_cam4_link_optical:
+                  robot_00000001_cam4_fid200:
+                    {}
+            robot_00000001_slider:
+              {}
+      Update Interval: 0
+      Value: true
+    - Alpha: 1
+      Buffer Length: 1
+      Class: rviz_default_plugins/Path
+      Color: 25; 255; 0
+      Enabled: true
+      Head Diameter: 0.30000001192092896
+      Head Length: 0.20000000298023224
+      Length: 0.30000001192092896
+      Line Style: Lines
+      Line Width: 0.029999999329447746
+      Name: Path
+      Offset:
+        X: 0
+        Y: 0
+        Z: 0
+      Pose Color: 255; 85; 255
+      Pose Style: None
+      Radius: 0.029999999329447746
+      Shaft Diameter: 0.10000000149011612
+      Shaft Length: 0.10000000149011612
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /robot_deadbeef/plan
+      Value: true
+    - Alpha: 1
+      Axes Length: 1
+      Axes Radius: 0.10000000149011612
+      Class: rviz_default_plugins/Pose
+      Color: 255; 25; 0
+      Enabled: true
+      Head Length: 0.30000001192092896
+      Head Radius: 0.10000000149011612
+      Name: Pose
+      Shaft Length: 1
+      Shaft Radius: 0.05000000074505806
+      Shape: Arrow
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /goal_pose
+      Value: true
+    - Class: rviz_default_plugins/Camera
+      Enabled: true
+      Image Rendering: background and overlay
+      Name: Camera
+      Overlay Alpha: 0.5
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Best Effort
+        Value: /robot_00000001/cam0/image
+      Value: true
+      Visibility:
+        Camera: true
+        Grid: true
+        Image: true
+        Path: true
+        PointCloud2: true
+        Pose: true
+        TF: true
+        Value: true
+      Zoom Factor: 1
+    - Class: rviz_default_plugins/Camera
+      Enabled: true
+      Image Rendering: background and overlay
+      Name: Camera
+      Overlay Alpha: 0.5
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Best Effort
+        Value: /robot_00000001/cam4/image
+      Value: true
+      Visibility:
+        Camera: true
+        Grid: true
+        Image: true
+        Path: true
+        PointCloud2: true
+        Pose: true
+        TF: true
+        Value: true
+      Zoom Factor: 1
+    - Class: rviz_default_plugins/Image
+      Enabled: true
+      Max Value: 1
+      Median window: 5
+      Min Value: 0
+      Name: Image
+      Normalize Range: true
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Best Effort
+        Value: /robot_00000001/cam0_out
+      Value: true
+    - Alpha: 0.20000000298023224
+      Autocompute Intensity Bounds: true
+      Autocompute Value Bounds:
+        Max Value: 10
+        Min Value: -10
+        Value: true
+      Axis: Z
+      Channel Name: intensity
+      Class: rviz_default_plugins/PointCloud2
+      Color: 255; 255; 255
+      Color Transformer: Intensity
+      Decay Time: 10
+      Enabled: true
+      Invert Rainbow: false
+      Max Color: 255; 255; 255
+      Max Intensity: 0
+      Min Color: 0; 0; 0
+      Min Intensity: 0
+      Name: PointCloud2
+      Position Transformer: XYZ
+      Selectable: true
+      Size (Pixels): 3
+      Size (m): 0.10000000149011612
+      Style: Spheres
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Best Effort
+        Value: /robot_00000001/sensor/scan
+      Use Fixed Frame: true
+      Use rainbow: true
+      Value: true
+  Enabled: true
+  Global Options:
+    Background Color: 48; 48; 48
+    Fixed Frame: odom
+    Frame Rate: 30
+  Name: root
+  Tools:
+    - Class: rviz_default_plugins/Interact
+      Hide Inactive Objects: true
+    - Class: rviz_default_plugins/MoveCamera
+    - Class: rviz_default_plugins/Select
+    - Class: rviz_default_plugins/FocusCamera
+    - Class: rviz_default_plugins/Measure
+      Line color: 128; 128; 0
+    - Class: rviz_default_plugins/SetInitialPose
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /initialpose
+    - Class: rviz_default_plugins/SetGoal
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /goal_pose
+    - Class: rviz_default_plugins/PublishPoint
+      Single click: true
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /clicked_point
+  Transformation:
+    Current:
+      Class: rviz_default_plugins/TF
+  Value: true
+  Views:
+    Current:
+      Class: rviz_default_plugins/Orbit
+      Distance: 9.67087459564209
+      Enable Stereo Rendering:
+        Stereo Eye Separation: 0.05999999865889549
+        Stereo Focal Distance: 1
+        Swap Stereo Eyes: false
+        Value: false
+      Focal Point:
+        X: 0.41820842027664185
+        Y: 0.18828144669532776
+        Z: 0.018085982650518417
+      Focal Shape Fixed Size: true
+      Focal Shape Size: 0.05000000074505806
+      Invert Z Axis: false
+      Name: Current View
+      Near Clip Distance: 0.009999999776482582
+      Pitch: 1.2253979444503784
+      Target Frame: <Fixed Frame>
+      Value: Orbit (rviz)
+      Yaw: 4.7185773849487305
+    Saved: ~
+Window Geometry:
+  Camera:
+    collapsed: false
+  Displays:
+    collapsed: false
+  Height: 1088
+  Hide Left Dock: false
+  Hide Right Dock: false
+  Image:
+    collapsed: false
+  QMainWindow State: 000000ff00000000fd000000040000000000000196000003e5fc0200000009fb0000000c00430061006d006500720061010000003e000002050000002800fffffffb0000001200530065006c0065006300740069006f006e00000001e10000009b0000005d00fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb0000000a0049006d0061006700650100000249000001da0000002800fffffffb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c000002610000000100000195000003e5fc0200000005fb000000100044006900730070006c006100790073010000003e000001b3000000cb00fffffffb0000000c00430061006d00650072006101000001f70000022c0000002800fffffffb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a00560069006500770073000000003e000002d0000000a500fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b20000000000000000000000020000039a000000a9fc0100000001fb0000000a00560069006500770073030000004e00000080000002e10000019700000003000004420000003efc0100000002fb0000000800540069006d00650100000000000004420000000000000000fb0000000800540069006d0065010000000000000450000000000000000000000287000003e500000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  Selection:
+    collapsed: false
+  Tool Properties:
+    collapsed: false
+  Views:
+    collapsed: false
+  Width: 1470
+  X: 0
+  Y: 0

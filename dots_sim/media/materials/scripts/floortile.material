@@ -1,0 +1,14 @@
+material floortile
+{
+    technique
+    {
+        pass
+        {
+            texture_unit
+            {
+                texture floortile.png
+                scale 0.1 0.1
+            }
+        }   
+    }
+}

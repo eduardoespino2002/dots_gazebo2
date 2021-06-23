@@ -1,0 +1,37 @@
+<sdf version='1.6'>
+  <world name='default'>
+    <physics name='default_physics' default='0' type='ode'>
+      <max_step_size>0.002</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>0</real_time_update_rate>
+      <ode> <solver> <type>quick</type> </solver> </ode>
+    </physics>
+    <gui>
+      <camera name="user_camera">
+        <pose>-2.0 0 6 0 1.25 0</pose>
+      </camera>
+    </gui>    
+
+
+
+
+    <include>
+      <uri>model://ground_plane</uri>
+      <pose>0 0 0 0 0 0</pose>
+    </include>
+
+    <include>
+      <uri>model://sun</uri>
+      <pose>0 0 0 0 0 0</pose>
+    </include>
+
+
+    <include>
+      <uri>model://carrier</uri>
+      <pose>0 0 0 0 0 0</pose>
+      <scale>2 2 2</scale>
+    </include>
+
+    
+  </world>
+</sdf>
